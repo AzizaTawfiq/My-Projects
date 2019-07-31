@@ -1,0 +1,118 @@
+body{
+   
+    
+    font-family: cursive;
+     font-family: cursive;
+   
+    background-color: rgb(209, 232, 238);
+   
+    
+    
+}
+                       /* Start Header */
+header{
+    background-color:rgb(39, 231, 231);
+    border: 1px solid black;
+    height: 100px;
+    overflow: hidden;
+    
+}
+header h1{
+    
+}
+
+
+
+                                           /* End Header */
+    /*Start  article*/
+    article{
+        
+        border-radius: 10%;
+        border: 3px solid black;
+        width: 75%;
+        margin: 0 auto 0;
+        overflow: hidden;
+        text-align: center;
+        position: relative;
+        top:50px;
+        
+    }
+    article .main{
+        padding: 20px;
+        text-align: center;
+    }
+    article .main h2{
+       
+        margin-top:0;
+        color:#01ADF0;
+        font-family: cursive;
+        text-align: center;
+        font-size: 30px;
+    }
+    article .main #Quote{
+        font-size: 40px;
+        font-weight: bold;
+        font-family: serif;
+        text-shadow: 2px 2px 4px rgb(79, 224, 34);
+        text-align: left;
+    }
+    article .main #Question {
+        font-size: 40px;
+        font-weight: bold;
+        font-family: cursive;
+        margin-bottom: 20px;
+        text-align: left;
+        margin-left: 30px;
+    }
+    article .main #Answer1,
+    article .main #Answer2{
+        padding: 30px;
+        font-family: cursive;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 20px;
+        border: none;
+        cursor: pointer; 
+       
+        
+    }
+    article .main #Answer1{
+        background-color:rgba(32, 194, 45, 0.5);
+    }
+    article .main #Answer2{
+        background-color:rgba(56, 141, 197, 0.5);
+    }
+    article .main  #result{
+        padding: 10px;
+        font-size: 40px;
+        font-family: cursive;
+        border: 3px solid rgb(79, 224, 34);
+        border-radius: 20px;
+        width:30%;
+        height: 30%;
+        margin: auto;
+        margin-top: 50px;
+        float: right;
+    }
+    article .main #skip{
+        padding: 15px;
+        font-family: cursive;
+        font-size: 20px;
+        background-color:rgba(70, 100, 255);
+        margin: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+        border-radius: 30px;
+        float: right;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+    }
+    
+    article .main #fullResult{
+        padding:30px;
+        font-family: cursive;
+        font-size: 40px;
+        margin: auto;
+    }
+                                     /* End article */

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>skills</title>
+    <link rel="stylesheet" href="css/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="css/skills.css" type="text/css"/>
+    
+</head>
+<body onload="ParseJsonMultiple()">
+    <header style="width: 100%;height: 50px;;border-radius: 30%;height: 100px; background-color:rgb(180, 234, 241);" >
+        <h1 style="text-align: center;padding-top: 20px;">Let's Have Fun...!!!</h1>
+    </header>
+    <article >
+        <div class="container">
+            <div class="main">
+                <h2>English  skills</h2>
+                <hr>
+                <div id="Quote">Quote</div>
+                <div id="Question">Question</div>
+                <img  style="width:200px;height: 200px;"id="image"src=""/>
+                <div style="clear: both"></div>
+                <button id="Answer1" onclick="detectClick(1)">Answer1</button>
+                <button id="Answer2" onclick="detectClick(2)">Answer2</button>
+                <div id="result"></div>
+                <div class="clear"></div>
+                <button id="skip" onclick="displayQuestion()">Skip</button>
+                <div id="fullResult"></div>
+            </div>
+        </div>
+       
+    </article>
+    <script>
+        var click,score=0,WhereMultiple=0,correct;
+        var jsonStr,jsonT;
+        function ParseJsonMultiple()
+        {
+            var xhr = false;
+                if (window.XMLHttpRequest)
+                {
+                        xhr=new XMLHttpRequest();
+                }
+                else
+                  {xhr=new ActiveXObject("Microsoft.XMLHTTP");}
+                xhr.onreadystatechange = function() 
+                {
+                    if (xhr.readyState == 4) 
+                    {
+                        if (xhr.status == 200) 
+                        {
+                            jsonStr=xhr.responseText;
+                             jsonT =JSON.parse(jsonStr);
+                            displayQuestion();
+                           
+                    }
+                };
+                }
+                xhr.open('GET', 'JsonFiles/skillWithImage.txt', true);
+                xhr.send();
+        
+        }
+       
+        function displayQuestion()
+        { 
+
+            var num1=parseInt((Math.random()*2));
+            if (num1==0)
+            {
+                num2=1;
+                correct=2;
+            }
+            else
+            {
+                num2=0;
+                correct=1;
+            }
+            document.getElementById("Quote").innerHTML=jsonT[WhereMultiple].Quote;
+            document.getElementById("Question").innerHTML=jsonT[WhereMultiple].Questiontext;
+            document.getElementById("image").src=jsonT[WhereMultiple].image;
+            document.getElementById("Answer1").innerHTML=jsonT[WhereMultiple].Choises[num1];
+            document.getElementById("Answer2").innerHTML=jsonT[WhereMultiple].Choises[num2];
+            document.getElementById("fullResult").style.display="none";  
+          
+            WhereMultiple++;
+        }
+        
+        function detectClick(x)
+        {
+            if (x==correct)
+            {
+            score++;
+            document.getElementById("result").innerHTML="Great";
+            }
+            else 
+            document.getElementById("result").innerHTML="Wrong";
+            if (WhereMultiple<5)
+            {
+            setTimeout('document.getElementById("result").innerHTML=" "',1000);
+            setTimeout('displayQuestion()',1000);
+            document.getElementById("FinalResult").style.display="none";  
+        
+            }
+            else 
+            {
+                document.getElementById("fullResult").innerHTML="Score = "+score;  
+                document.getElementById("Quote").style.display="none";
+                document.getElementById("Question").style.display="none";
+                document.getElementById("Answer1").style.display="none";
+                document.getElementById("Answer2").style.display="none";  
+                document.getElementById("fullResult").style.display="block";  
+                document.getElementById("result").style.display="none";  
+                document.getElementById("image").style.display="none";
+          
+        
+            }
+        }
+        </script>
+</body>
+</html>

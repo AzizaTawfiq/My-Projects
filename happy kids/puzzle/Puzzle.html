@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kids Puzzle</title>
+	<link rel="stylesheet" href="puzzle.css">
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+var puzzle_array = ['puzzles/2.jpg','puzzles/3.jpg','puzzles/4.jpg','puzzles/5.jpg','puzzles/6.jpg','puzzles/7.jpg','puzzles/8.jpg',
+'puzzles/9.jpg','puzzles/10.jpg','puzzles/11.jpg','puzzles/12.jpg','puzzles/13.jpg','puzzles/14.jpg','puzzles/15.jpg','puzzles/16.jpg',
+'puzzles/17.jpg','puzzles/18.jpg','puzzles/19.jpg','puzzles/20.jpg','puzzles/21.jpg'];
+
+var puzzle_array1 = ['puzzles/2.jpg','puzzles/3.jpg','puzzles/4.jpg','puzzles/5.jpg','puzzles/6.jpg','puzzles/7.jpg','puzzles/8.jpg',
+'puzzles/9.jpg','puzzles/10.jpg','puzzles/11.jpg','puzzles/12.jpg','puzzles/13.jpg','puzzles/14.jpg','puzzles/15.jpg','puzzles/16.jpg',
+'puzzles/17.jpg','puzzles/18.jpg','puzzles/19.jpg','puzzles/20.jpg','puzzles/21.jpg'];
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+    var output = '';
+    puzzle_array.memory_tile_shuffle();
+	for(var i = 0; i < puzzle_array.length; i++){
+       
+		output.innerHTML = "";
+        output += '<div id="tile_'+i+'" style="background-image: url('+puzzle_array[i]+')"></div>';
+      //  alert(output);
+	}
+	document.getElementById('card').innerHTML = output;
+
+}
+function newBoard1(){
+    var output = '';
+   // puzzle_array.memory_tile_shuffle();
+	for(var i = 0; i < puzzle_array1.length; i++){
+       
+		output.innerHTML = "";
+        output += '<div id="tiled_'+i+'" style="background-image: url('+puzzle_array1[i]+')"></div>';
+      //  alert(output);
+	}
+	//document.getElementById('card').innerHTML = output;
+	document.getElementById('puzzle').innerHTML = output;
+}
+
+
+
+   $( function() {
+	for(var i = 0; i < puzzle_array.length; i++){
+		
+		//var t1=$("#tile_"+i).attr('id');
+		//var t2=$("#tiled_"+i).attr('id');
+		//alert(t1);
+		//alert(t2);
+    $( "#tile_"+i ).draggable({ class:"ui-widget-content" });
+	$( "#tiled_"+i ).droppable({ class:"ui-widget-header" });
+	
+
+    $("#tiled_"+i).droppable({
+		accept: function(d) { 
+			var a1=d.css('background-image');
+			var a2=$(this).css('background-image');
+			
+			if(a1==a2){ 
+
+			//	alert(d.css('background-image'));
+			//	alert($(this).css('background-image'));
+			d.draggable({ revert: "invalid" });
+				return true;
+			}
+			
+		}
+	,
+      drop: function( event, ui ) {
+
+	   var t1=ui.draggable.css('background-image');
+		//alert(t1);
+	   var t2=$( this ).css('background-image');
+		//alert(t2);
+		
+		if(t2==t1){
+			//alert("true");
+			ui.draggable
+          .addClass( "ui-state-highlight" );
+
+			$( this ).css('opacity', '1');
+		}
+		else if(t2!=t1){
+			alert("false");
+			ui.draggable
+          .addClass( "ui-state-highlight" );
+		}
+		}
+    });
+  }
+  } );
+
+  $( function() {
+    for(var i = 0; i < puzzle_array.length; i++){
+    $( "#puzzle" ).css({"opacity":"0.1"});}
+  } );
+
+</script>
+
+</head>
+<body>
+<div id="contain" style="width: 1280px; height: 800px; margin: auto;">
+		<div id="puzzle" ></div>
+		<div id="card"></div> 
+</div>
+<script>newBoard();</script>
+<script>newBoard1();</script>
+</body>
+</html>
